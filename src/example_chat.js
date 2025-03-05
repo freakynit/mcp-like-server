@@ -31,25 +31,6 @@ async function sendMessage(messages, stream = false) {
     });
 
     return result;
-
-    if(stream) {
-        let idx = 0;
-        for await (const chunk of result) {
-            // console.log(JSON.stringify(chunk, null, 2));
-            if(chunk.choices && chunk.choices.length > 0) {
-                if(idx++ == 0) {
-                    process.stdout.write(`function: ${chunk.choices[0]?.delta?.tool_calls?.[0]?.function?.name}\n`);
-                    process.stdout.write('arguments: ');
-                }
-                process.stdout.write(chunk.choices[0]?.delta?.tool_calls?.[0]?.function?.arguments || '');
-            } else {
-                console.log(`\n=== usage ===\n`, chunk.usage);
-            }
-        }
-    } else {
-        console.log(JSON.stringify(result, null, 2));
-        // result?.choices?.forEach(choice => console.log(choice?.message?.content));
-    }
 }
 
 async function getUserDataInput() {
@@ -117,7 +98,7 @@ async function chatLoop() {
     const exitWords = ["exit", "quit", "bye"];
     const userChatPrompt = `Query (${exitWords.join("/")} to exit)...`;
 
-    const stream = false;
+    const stream = false;   // `true` not implemented
     let messages = [];
 
     while (true) {

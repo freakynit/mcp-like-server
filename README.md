@@ -105,5 +105,5 @@ UI at: http://localhost:6333/dashboard
 
 ### Example flows for various inputs
 1. `how are you doing` => user -> llm -> done.
-2. `search for latest US politics news` => user -> llm -> tool call (`searchFunctions`) => [top 3 matching functions] => add these to tool, call definitions => LLM call again => tool call (`googleSearch`) => final result => user.
+2. `search for latest US politics news` => user -> llm -> tool call (`searchFunctions`) => [top 3 matching functions] => add these to tool call definitions => LLM call again => tool call (`googleSearch`) => final result => user.
 3. `extract this page content: https://example.com/` => similar flow as above, but, second tool call is `extractPageContent`.
